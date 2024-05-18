@@ -1,0 +1,192 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f3f4f6;
+}
+
+.innerContainer {
+  width: 86%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media (min-width: 768px) {
+  .innerContainer {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .innerContainer {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+.leftSide {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .leftSide {
+    width: 66.666667%;
+  }
+}
+
+.leftContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+@media (min-width: 768px) {
+  .leftContent {
+    max-width: 32rem;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .leftContent {
+    max-width: 48rem;
+    margin-top: -20px;
+  }
+}
+
+.taskManage {
+  display: flex;
+  gap: 1px;
+  padding: 1px 3px;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+@media (min-width: 768px) {
+  .taskManage {
+    font-size: 1rem;
+  }
+}
+
+.taskTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #6b21a8;
+}
+
+@media (min-width: 768px) {
+  .taskTitle {
+    gap: 1rem;
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .taskTitle {
+    font-size: 4.5rem;
+  }
+}
+
+.rightSide {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .rightSide {
+    width: 33.333333%;
+    padding: 0.25rem;
+  }
+}
+
+.formContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: white;
+  padding: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .formContainer {
+    width: 400px;
+  }
+}
+
+.formTitle {
+  color: #3b82f6;
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.textbox {
+  width: 100%;
+  border-radius: 9999px;
+}
+
+.iconWrapper {
+  right: 1rem;
+  cursor: pointer;
+}
+
+.forgotPassword {
+  font-size: 0.875rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.forgotPassword:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 9999px;
+}
+
+
+.submitButton {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #1e40af;
+}
