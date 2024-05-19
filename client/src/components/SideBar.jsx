@@ -17,7 +17,7 @@ const linkData = [
     icon: <MdDashboard />,
   },
   {
-    label: "To Do",
+    label: "Tasks",
     link: "todo/todo",
     icon: <MdOutlinePendingActions />,
   },

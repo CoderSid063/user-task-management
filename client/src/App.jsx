@@ -7,13 +7,13 @@ import Navbar from "./components/Navbar.jsx";
 import SideBar from "./components/SideBar.jsx";
 import Register from "./routes/Register.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import Task from "./components/Task.jsx";
 import { Transition } from "@headlessui/react";
 import { Fragment, useRef } from "react";
 import { authActions } from "./store/authSlice.js";
 import clsx from "clsx";
 import { IoClose } from "react-icons/io5";
 import Sidebar from "./components/SideBar.jsx";
+import Tasks from "./components/Tasks.jsx";
 
 function Layout() {
   const { userData } = useSelector((state) => state.user);
@@ -99,7 +99,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index path="/" element={<Navigate to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/todo/:status" element={<Task />} />
+          <Route path="/todo/:status" element={<Tasks />} />
         </Route>
 
         <Route path="/register" element={<Register />} />
