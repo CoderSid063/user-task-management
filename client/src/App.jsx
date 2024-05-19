@@ -6,13 +6,15 @@ import Login from "./routes/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
 import SideBar from "./components/SideBar.jsx";
 import MobileSidebar from "./components/MobileSidebar.jsx";
+import Register from "./routes/Register.jsx";
+import { useSelector } from "react-redux";
 
 function Layout() {
-  const user = "";
+  const { userData } = useSelector((state) => state.user);
 
   const location = useLocation();
 
-  return user ? (
+  return userData ? (
     <div className="w-full h-screen flex flex-col md:flex-row">
       <div className="w-1/5 h-screen bg-white sticky top-0 hidden md:block">
         <SideBar />
@@ -42,6 +44,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
 
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/log-in" element={<Login />} />
       </Routes>
 

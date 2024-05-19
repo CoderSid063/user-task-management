@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import styles from "../styles/login.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/authSlice";
+import { URL } from "../utils/url";
+import { userActions } from "../store/userSlice";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
@@ -14,7 +19,6 @@ const Login = () => {
   };
   const [loginFormData, setLoginFormData] = useState({
     email: "",
-    phoneNumber: "",
     password: "",
   });
 
@@ -28,24 +32,45 @@ const Login = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    // console.log(loginFormData);
     try {
-      setLoginFormData({
-        email: "",
-        phoneNumber: "",
-        password: "",
+      const response = await fetch(`${URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginFormData),
+        credentials: "include", // without this we can't store token in cookie storage only in "localhost"
       });
+      // console.log(response);
+
+      if (response.status === 200) {
+        alert("Login successfull");
+        const responseData = await response.json();
+        const { data } = responseData;
+        const { user } = data;
+
+        //sending tokens to redux store :-
+        dispatch(authActions.setTokens());
+
+        // //sending userdata to redux store:-
+        dispatch(userActions.setUserData(user));
+
+        // Reset form after submission
+        setLoginFormData({
+          email: "",
+          phoneNumber: "",
+          password: "",
+        });
+
+        navigate("/dashboard");
+      } else {
+        console.log("Error logging in:", response.statusText);
+      }
     } catch (error) {
       console.log("Error logging in:", error);
     }
   };
-
-  const user = "";
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    user && navigate("/dashboard");
-  }, [user]);
 
   return (
     <div className={styles.container}>

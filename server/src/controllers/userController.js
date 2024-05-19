@@ -23,21 +23,19 @@ const tokenGenerator = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { fullName, email, phoneNumber, password } = req.body;
+  const { fullName, email, password } = req.body;
   // console.log(req.body);
 
   //validation check :-
   if (
-    ![fullName, email, phoneNumber, password].every(
-      (field) => field && field.trim() !== ""
-    )
+    ![fullName, email, password].every((field) => field && field.trim() !== "")
   ) {
     throw new ApiError(400, "All fields are required");
   }
 
   //check user already exist: email :-
   const existedUser = await User.findOne({
-    $or: [{ phoneNumber }, { email }],
+    $or: [{ email }],
   });
 
   if (existedUser) {
@@ -49,7 +47,6 @@ const registerUser = asyncHandler(async (req, res) => {
     fullName,
     email,
     password,
-    phoneNumber,
   });
   // console.log(user);
   //remove password and refresh token from response :-
@@ -70,17 +67,17 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   //data from req.body:-
-  const { email, phoneNumber, password } = req.body;
+  const { email, password } = req.body;
   // console.log(req.body);
 
   //login with either username or email :-
-  if (!(phoneNumber || email)) {
-    throw new ApiError(400, "phonenumber or email required");
+  if (!email) {
+    throw new ApiError(400, "email required");
   }
 
   //find user or email exist in db:-
   const user = await User.findOne({
-    $or: [{ email }, { phoneNumber }],
+    $or: [{ email }],
   });
   // console.log(user);
   if (!user) {
