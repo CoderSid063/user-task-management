@@ -4,6 +4,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     isAuthenticated: false,
+    isSidebarOpen: false,
   },
   reducers: {
     setTokens: (state) => {
@@ -11,6 +12,9 @@ const authSlice = createSlice({
     },
     clearTokens: (state) => {
       state.isAuthenticated = false;
+    },
+    setOpenSidebar: (state, action) => {
+      state.isSidebarOpen = action.payload;
     },
   },
 });
